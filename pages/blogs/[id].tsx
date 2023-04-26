@@ -5,7 +5,7 @@ import Link from "next/link";
 // import styles from "@/styles/Article.module.scss";
 import styles from "@/styles/hoge.module.css";
 import { SideBar } from "@/components/SideBar";
-import { Header } from "@/components/Header";
+import { LayoutHeader } from "@/components/Header";
 
 type BlogDetailProps = {
   article: Article;
@@ -14,30 +14,20 @@ type BlogDetailProps = {
 export default function BlogDetail({ article }: BlogDetailProps) {
   return (
     <>
-      <Header />
+      <LayoutHeader />
       <main className="container mx-auto">
-        <div className="mt-24">
-          <div className="text-sm">
-            記事一覧 {">"} {article.title}
-          </div>
-          <div className="mt-8 flex flex-row gap-12">
-            <div className="basis-3/4">
-              <Image src={article.eyecatch.url} />
-              <h3 className="mt-8 font-bold text-3xl">{article.title}</h3>
-              <div className="mt-4 text-indigo-600">
-                #{article.category.name}
-              </div>
-              <div className="mt-24">
-                <div
-                  dangerouslySetInnerHTML={{ __html: article.content }}
-                  className={styles.content}
-                />
-              </div>
-            </div>
-
-            <aside className="basis-1/4">
-              <SideBar />
-            </aside>
+        <div className="mt-8">
+          <Image src={article.eyecatch.url} />
+          <h3 className="mt-8 font-bold text-3xl">{article.title}</h3>
+          {/* <div className="mt-4 text-sm font-semibold text-gray-400">
+              記事一覧 {">"} {article.title}
+            </div> */}
+          <div className="mt-4 text-indigo-600">#{article.category.name}</div>
+          <div className="mt-16">
+            <div
+              dangerouslySetInnerHTML={{ __html: article.content }}
+              className={styles.content}
+            />
           </div>
         </div>
       </main>

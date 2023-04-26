@@ -1,14 +1,20 @@
 import { ArticleCard } from "@/components/ArticleCard";
-import { Header } from "@/components/Header";
+import { LayoutHeader } from "@/components/Header";
 import Layout from "@/components/Layout";
 import { SideBar } from "@/components/SideBar";
 import { Article } from "@/entity/Article";
+import { Category } from "@/entity/Category";
+import { microcms } from "@/libs/microcms";
 import { Group, Image, Loader, Pagination, TextInput } from "@mantine/core";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-export default function Search() {
+type SearchProps = {
+  categories: Category[];
+};
+
+export default function Search({ categories }: SearchProps) {
   const router = useRouter();
   const keyword = router.query.keyword as string;
 
@@ -18,8 +24,6 @@ export default function Search() {
     console.log(keyword);
 
     if (keyword) {
-      console.log("search...");
-
       const fetchSearch = async () => {
         const response = await fetch(`/api/search?keyword=${keyword}`);
         const json = await response.json();
@@ -33,7 +37,7 @@ export default function Search() {
   }, [keyword]);
 
   return (
-    <Layout keyword={keyword}>
+    <Layout keyword={keyword} categories={categories}>
       <div className="col-span-2">
         <h3 className="text-xl font-bold">検索結果</h3>
         <div className="mt-1 text-sm text-gray-500">
@@ -57,3 +61,15 @@ export default function Search() {
     </Layout>
   );
 }
+
+export const getStaticProps = async () => {
+  const categories = await microcms.get({
+    endpoint: "categories",
+  });
+
+  return {
+    props: {
+      categories: categories.contents,
+    },
+  };
+};

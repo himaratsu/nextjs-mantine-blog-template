@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export function Header() {
+export function LayoutHeader() {
   return (
     <header className="bg-gray-200">
       <div className="py-2 container mx-auto">

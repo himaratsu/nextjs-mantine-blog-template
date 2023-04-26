@@ -1,10 +1,13 @@
+import { Category } from "@/entity/Category";
 import { Button, Flex, Group, TextInput } from "@mantine/core";
+import Link from "next/link";
 
 type SideBarProps = {
   keyword?: string | undefined;
+  categories: Category[];
 };
 
-export function SideBar({ keyword }: SideBarProps) {
+export function SideBar({ keyword, categories }: SideBarProps) {
   return (
     <>
       <div>
@@ -24,9 +27,16 @@ export function SideBar({ keyword }: SideBarProps) {
       <div className="mt-12">
         <h5 className="font-bold mb-2">カテゴリ</h5>
         <ul className="list-disc ml-4 leading-relaxed">
-          <li>チュートリアル</li>
-          <li>日記</li>
-          <li>更新情報</li>
+          {categories.map((category) => (
+            <li key={category.id}>
+              <Link
+                className="hover:underline"
+                href={"/categories/" + category.id}
+              >
+                {category.name}
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
     </>
