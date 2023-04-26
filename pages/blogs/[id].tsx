@@ -50,13 +50,32 @@ export const getStaticPaths = async () => {
 
   const paths = data.contents.map((content: any) => `/blogs/${content.id}`);
 
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 };
 
 export const getStaticProps = async (context: any) => {
+  const { params, previewData } = context;
+
+  type Draft = {
+    draftKey: string;
+  };
+
+  const isDraft = (arg: any): arg is Draft => {
+    if (!arg?.draftKey) {
+      return false;
+    }
+    return typeof arg.draftKey === "string";
+  };
+
+  const slug = String(params.id);
+  const draftKey = isDraft(previewData)
+    ? { draftKey: previewData.draftKey }
+    : {};
+
   const data = await microcms.getListDetail({
     endpoint: "blogs",
-    contentId: context.params.id,
+    contentId: slug,
+    queries: draftKey,
   });
 
   return {
