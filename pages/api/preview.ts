@@ -10,7 +10,7 @@ const preview = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   const data = await microcms.get({
-    endpoint: "post",
+    endpoint: "blogs",
     contentId: slug,
     queries: {
       draftKey,
@@ -24,7 +24,7 @@ const preview = async (req: NextApiRequest, res: NextApiResponse) => {
     slug: data.id,
     draftKey: req.query.draftKey,
   });
-  res.writeHead(307, { Location: `/post/${data.id}` });
+  res.writeHead(307, { Location: `/blogs/${data.id}` });
   res.end("Preview mode enabled");
 };
 
