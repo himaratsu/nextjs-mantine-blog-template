@@ -1,26 +1,31 @@
 import { LayoutHeader } from "@/components/Header";
 import { SideBar } from "@/components/SideBar";
 import { Category } from "@/entity/Category";
+import { Carousel } from "@mantine/carousel";
 import { Image } from "@mantine/core";
+import Link from "next/link";
 import { ReactNode } from "react";
+import { CarouselBanner } from "./CarouselBanner";
 
 type LayoutProps = {
+  banners: Banner[];
   keyword?: string;
   categories: Category[];
   children: ReactNode;
 };
 
-export default function Layout({ keyword, categories, children }: LayoutProps) {
+export default function Layout({
+  banners,
+  keyword,
+  categories,
+  children,
+}: LayoutProps) {
   return (
     <>
       <LayoutHeader />
       <main className="container mx-auto">
-        <Image
-          src={`https://images.unsplash.com/photo-1682319298536-33ac5b48d772?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=600&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTY4MjQwNzg1Nw&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=800`}
-          alt="random image"
-          height={240}
-          className="w-full mt-2"
-        />
+        <CarouselBanner banners={banners} />
+
         <div className="mt-16">
           <div className="flex flex-row gap-12">
             <div className="basis-3/4 grid grid-cols-2 gap-6">{children}</div>

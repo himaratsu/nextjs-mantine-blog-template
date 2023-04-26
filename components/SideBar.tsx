@@ -10,9 +10,7 @@ type SideBarProps = {
 export function SideBar({ keyword, categories }: SideBarProps) {
   return (
     <>
-      <div>
-        <h5 className="font-bold mb-2">検索</h5>
-
+      <div className="mt-14">
         <TextInput
           placeholder="Search..."
           defaultValue={keyword}
