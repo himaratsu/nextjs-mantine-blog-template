@@ -1,4 +1,5 @@
 import { ArticleCard } from "@/components/ArticleCard";
+import { SideBar } from "@/components/SideBar";
 import { Article } from "@/entity/Article";
 import { microcms } from "@/libs/microcms";
 import { Group, Image, Loader, Pagination, TextInput } from "@mantine/core";
@@ -9,7 +10,7 @@ import { useEffect, useState } from "react";
 
 export default function Search() {
   const router = useRouter();
-  const keyword = router.query.keyword;
+  const keyword = router.query.keyword as string;
 
   const [articles, setArticles] = useState<Article[] | undefined>(undefined);
   const [loading, setLoading] = useState<boolean>(false);
@@ -80,18 +81,7 @@ export default function Search() {
             </div>
 
             <aside className="basis-1/4">
-              <div>
-                <h5 className="text-base mt-0">検索</h5>
-                <TextInput placeholder="Search..." />
-              </div>
-              <div className="mt-16">
-                <h5 className="text-base">カテゴリ</h5>
-                <ul>
-                  <li>チュートリアル</li>
-                  <li>日記</li>
-                  <li>更新情報</li>
-                </ul>
-              </div>
+              <SideBar keyword={keyword} />
             </aside>
           </div>
         </div>

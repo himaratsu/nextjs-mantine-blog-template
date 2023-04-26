@@ -1,4 +1,5 @@
 import { ArticleCard } from "@/components/ArticleCard";
+import { SideBar } from "@/components/SideBar";
 import { Article } from "@/entity/Article";
 import { microcms } from "@/libs/microcms";
 import { Image, Pagination, TextInput } from "@mantine/core";
@@ -52,18 +53,7 @@ export default function Home({ result }: HomeProps) {
             </div>
 
             <aside className="basis-1/4">
-              <div>
-                <h5 className="font-bold mb-2">検索</h5>
-                <TextInput placeholder="Search..." />
-              </div>
-              <div className="mt-16">
-                <h5 className="font-bold mb-2">カテゴリ</h5>
-                <ul>
-                  <li>チュートリアル</li>
-                  <li>日記</li>
-                  <li>更新情報</li>
-                </ul>
-              </div>
+              <SideBar />
             </aside>
           </div>
         </div>

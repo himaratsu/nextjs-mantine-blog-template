@@ -28,6 +28,12 @@ export function ArticleCard({ article }: ArticleCardProps) {
       </Group>
 
       <div className="text-xs line-clamp-2">{tagRemovedContent}</div>
+
+      <Group position="apart" className="mt-4 text-xs">
+        <p className="px-2 py-1 bg-slate-200 rounded">
+          #{article.category.name}
+        </p>
+      </Group>
     </Card>
   );
 }

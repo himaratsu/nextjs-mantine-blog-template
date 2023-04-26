@@ -4,6 +4,7 @@ import { Image, Pagination, TextInput } from "@mantine/core";
 import Link from "next/link";
 // import styles from "@/styles/Article.module.scss";
 import styles from "@/styles/hoge.module.css";
+import { SideBar } from "@/components/SideBar";
 
 type BlogDetailProps = {
   article: Article;
@@ -39,18 +40,7 @@ export default function BlogDetail({ article }: BlogDetailProps) {
             </div>
 
             <aside className="basis-1/4">
-              <div>
-                <h5 className="text-base mt-0">検索</h5>
-                <TextInput placeholder="Search..." />
-              </div>
-              <div className="mt-16">
-                <h5 className="text-base">カテゴリ</h5>
-                <ul>
-                  <li>チュートリアル</li>
-                  <li>日記</li>
-                  <li>更新情報</li>
-                </ul>
-              </div>
+              <SideBar />
             </aside>
           </div>
         </div>
