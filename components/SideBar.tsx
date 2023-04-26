@@ -23,7 +23,7 @@ export function SideBar({ keyword }: SideBarProps) {
       </div>
       <div className="mt-12">
         <h5 className="font-bold mb-2">カテゴリ</h5>
-        <ul className="list-disc">
+        <ul className="list-disc ml-4 leading-relaxed">
           <li>チュートリアル</li>
           <li>日記</li>
           <li>更新情報</li>

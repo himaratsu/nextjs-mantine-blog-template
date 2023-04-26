@@ -5,6 +5,7 @@ import Link from "next/link";
 // import styles from "@/styles/Article.module.scss";
 import styles from "@/styles/hoge.module.css";
 import { SideBar } from "@/components/SideBar";
+import { Header } from "@/components/Header";
 
 type BlogDetailProps = {
   article: Article;
@@ -13,25 +14,20 @@ type BlogDetailProps = {
 export default function BlogDetail({ article }: BlogDetailProps) {
   return (
     <>
-      <header className="bg-gray-200">
-        <div className="py-2 container mx-auto">
-          <Link href="/">
-            <h5 className="font-bold text-lg font-mono ml-0 hover:underline">
-              microSite
-            </h5>
-          </Link>
-        </div>
-      </header>
+      <Header />
       <main className="container mx-auto">
-        <div className="mt-8">
+        <div className="mt-24">
           <div className="text-sm">
             記事一覧 {">"} {article.title}
           </div>
           <div className="mt-8 flex flex-row gap-12">
             <div className="basis-3/4">
               <Image src={article.eyecatch.url} />
-              <h3 className="mt-8 font-bold text-2xl">{article.title}</h3>
-              <div className="mt-12">
+              <h3 className="mt-8 font-bold text-3xl">{article.title}</h3>
+              <div className="mt-4 text-indigo-600">
+                #{article.category.name}
+              </div>
+              <div className="mt-24">
                 <div
                   dangerouslySetInnerHTML={{ __html: article.content }}
                   className={styles.content}

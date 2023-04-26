@@ -27,7 +27,9 @@ export function ArticleCard({ article }: ArticleCardProps) {
         <div className="font-bold group-hover:underline">{article.title}</div>
       </Group>
 
-      <div className="text-xs line-clamp-2">{tagRemovedContent}</div>
+      <div className="text-xs line-clamp-2 leading-relaxed text-gray-600">
+        {tagRemovedContent}
+      </div>
 
       <Group position="apart" className="mt-4 text-xs">
         <p className="px-2 py-1 bg-slate-200 rounded">
