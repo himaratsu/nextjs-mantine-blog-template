@@ -33,11 +33,7 @@ export function ArticleCard({ article }: ArticleCardProps) {
       </div>
 
       <Group position="apart" className="mt-4 text-xs">
-        <Link href={"/categories/" + article.category.id}>
-          <p className="px-2 py-1 bg-slate-200 text-gray-600 rounded font-semibold hover:bg-slate-100 hover:text-gray-500">
-            #{article.category.name}
-          </p>
-        </Link>
+        <p className="mt-2 text-gray-600 rounded ">#{article.category.name}</p>
       </Group>
     </Card>
   );

@@ -40,7 +40,7 @@ export default function Search({ categories }: SearchProps) {
     <Layout keyword={keyword} categories={categories}>
       <div className="col-span-2">
         <h3 className="text-xl font-bold">検索結果</h3>
-        <div className="mt-1 text-sm text-gray-500">
+        <div className="mt-2 text-sm text-gray-500">
           {articles != null
             ? `${articles.length}件の記事がヒットしました`
             : "Loading..."}

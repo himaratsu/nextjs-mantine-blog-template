@@ -18,9 +18,9 @@ export default function Home({ result, categories }: HomeProps) {
       <h3 className="text-xl font-bold col-span-2">新着記事</h3>
       {result.contents.map((article) => (
         <div key={article.id}>
-          <Link href={"/blogs/" + article.id}>
-            <ArticleCard article={article} />
-          </Link>
+          {/* <Link href={"/blogs/" + article.id}> */}
+          <ArticleCard article={article} />
+          {/* </Link> */}
         </div>
       ))}
       <div className="mt-16 col-span-2 mx-auto">

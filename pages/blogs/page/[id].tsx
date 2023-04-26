@@ -1,6 +1,7 @@
 import { ArticleCard } from "@/components/ArticleCard";
 import Layout from "@/components/Layout";
 import { Article } from "@/entity/Article";
+import { Category } from "@/entity/Category";
 import { microcms } from "@/libs/microcms";
 import { Image, Pagination, TextInput } from "@mantine/core";
 import { MicroCMSListResponse } from "microcms-js-sdk";
@@ -8,11 +9,12 @@ import Link from "next/link";
 
 type BlogProps = {
   result: MicroCMSListResponse<Article>;
+  categories: Category[];
 };
 
-export default function Home({ result }: BlogProps) {
+export default function Home({ result, categories }: BlogProps) {
   return (
-    <Layout>
+    <Layout categories={categories}>
       <h3 className="text-xl font-bold col-span-2">新着記事</h3>
       {result.contents.map((article) => (
         <div key={article.id}>
@@ -64,9 +66,14 @@ export const getStaticProps = async (context: any) => {
     },
   });
 
+  const categories = await microcms.get({
+    endpoint: "categories",
+  });
+
   return {
     props: {
       result: data,
+      categories: categories.contents,
     },
   };
 };
