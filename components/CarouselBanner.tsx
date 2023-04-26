@@ -13,7 +13,7 @@ export function CarouselBanner({ banners }: CarouselBannerProps) {
         <Carousel.Slide key={banner.id}>
           <Link href={banner.link} target="_blank">
             <Image
-              src={banner.imageUrl}
+              src={banner.imageUrl + "?h=240"}
               alt={banner.title}
               height={240}
               className="w-full"

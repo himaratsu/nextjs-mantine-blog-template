@@ -1,11 +1,11 @@
 import { ArticleCard } from "@/components/ArticleCard";
-import { LayoutHeader } from "@/components/Header";
+
 import Layout from "@/components/Layout";
-import { SideBar } from "@/components/SideBar";
+
 import { Article } from "@/entity/Article";
 import { Category } from "@/entity/Category";
 import { microcms } from "@/libs/microcms";
-import { Image, Pagination, TextInput } from "@mantine/core";
+import { Pagination } from "@mantine/core";
 import { MicroCMSListResponse } from "microcms-js-sdk";
 import Link from "next/link";
 

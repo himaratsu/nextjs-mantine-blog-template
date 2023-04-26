@@ -21,7 +21,11 @@ export function ArticleCard({ article }: ArticleCardProps) {
       className="hover:shadow-xl hover:bg-gray-100 group"
     >
       <Card.Section>
-        <Image src={article.eyecatch.url} height={172} alt={article.title} />
+        <Image
+          src={article.eyecatch.url + "?h=172"}
+          height={172}
+          alt={article.title}
+        />
       </Card.Section>
 
       <Group position="apart" mt="md" mb="xs">

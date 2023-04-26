@@ -1,12 +1,8 @@
 import { Article } from "@/entity/Article";
 import { microcms } from "@/libs/microcms";
-import { Image, Pagination, TextInput } from "@mantine/core";
-import Link from "next/link";
-// import styles from "@/styles/Article.module.scss";
-import styles from "@/styles/hoge.module.css";
-import { SideBar } from "@/components/SideBar";
+import { Image } from "@mantine/core";
+import styles from "@/styles/editor.module.css";
 import { LayoutHeader } from "@/components/Header";
-import { log } from "console";
 import { Footer } from "@/components/Footer";
 
 type BlogDetailProps = {
@@ -23,7 +19,7 @@ export default function BlogDetail({ article }: BlogDetailProps) {
       <LayoutHeader />
       <main className="container mx-auto">
         <div className="mt-8">
-          <Image src={article.eyecatch.url} />
+          <Image src={article.eyecatch.url + "?h=480"} height={480} />
           <h3 className="mt-8 font-bold text-3xl">{article.title}</h3>
           {/* <div className="mt-4 text-sm font-semibold text-gray-400">
               記事一覧 {">"} {article.title}

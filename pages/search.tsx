@@ -1,11 +1,8 @@
 import { ArticleCard } from "@/components/ArticleCard";
-import { LayoutHeader } from "@/components/Header";
 import Layout from "@/components/Layout";
-import { SideBar } from "@/components/SideBar";
 import { Article } from "@/entity/Article";
 import { Category } from "@/entity/Category";
 import { microcms } from "@/libs/microcms";
-import { Group, Image, Loader, Pagination, TextInput } from "@mantine/core";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";

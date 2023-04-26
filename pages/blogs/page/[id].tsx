@@ -3,7 +3,7 @@ import Layout from "@/components/Layout";
 import { Article } from "@/entity/Article";
 import { Category } from "@/entity/Category";
 import { microcms } from "@/libs/microcms";
-import { Image, Pagination, TextInput } from "@mantine/core";
+import { Pagination } from "@mantine/core";
 import { MicroCMSListResponse } from "microcms-js-sdk";
 import Link from "next/link";
 
