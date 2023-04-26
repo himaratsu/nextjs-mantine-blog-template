@@ -6,12 +6,17 @@ import Link from "next/link";
 import styles from "@/styles/hoge.module.css";
 import { SideBar } from "@/components/SideBar";
 import { LayoutHeader } from "@/components/Header";
+import { log } from "console";
 
 type BlogDetailProps = {
   article: Article;
 };
 
 export default function BlogDetail({ article }: BlogDetailProps) {
+  if (article == null) {
+    return <div>loading...</div>;
+  }
+
   return (
     <>
       <LayoutHeader />
@@ -56,6 +61,13 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context: any) => {
   const { params, previewData } = context;
 
+  console.log(params);
+  console.log(previewData);
+
+  if (!params?.id) {
+    throw new Error("Error: ID not found");
+  }
+
   type Draft = {
     draftKey: string;
   };
@@ -67,15 +79,15 @@ export const getStaticProps = async (context: any) => {
     return typeof arg.draftKey === "string";
   };
 
-  const slug = String(params.id);
+  const contentId = String(params.id);
   const draftKey = isDraft(previewData)
     ? { draftKey: previewData.draftKey }
     : {};
 
   const data = await microcms.getListDetail({
     endpoint: "blogs",
-    contentId: slug,
-    queries: draftKey,
+    contentId: contentId,
+    // queries: draftKey,
   });
 
   return {
