@@ -1,15 +1,40 @@
 import { ArticleCard } from "@/components/ArticleCard";
 import { Article } from "@/entity/Article";
 import { microcms } from "@/libs/microcms";
-import { Image, Pagination, TextInput } from "@mantine/core";
+import { Group, Image, Loader, Pagination, TextInput } from "@mantine/core";
 import { MicroCMSListResponse } from "microcms-js-sdk";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
-type HomeProps = {
-  result: MicroCMSListResponse<Article>;
-};
+export default function Search() {
+  const router = useRouter();
+  const keyword = router.query.keyword;
 
-export default function Home({ result }: HomeProps) {
+  const [articles, setArticles] = useState<Article[] | undefined>(undefined);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    console.log(keyword);
+
+    if (keyword) {
+      console.log("search...");
+
+      const fetchSearch = async () => {
+        setLoading(true);
+        const response = await fetch(`/api/search?keyword=${keyword}`);
+        const json = await response.json();
+        console.log(json);
+
+        console.log(json.articles);
+
+        setLoading(false);
+        setArticles(json.articles);
+      };
+      fetchSearch();
+    }
+  }, [keyword]);
+
   return (
     <>
       <header className="bg-gray-200">
@@ -29,35 +54,38 @@ export default function Home({ result }: HomeProps) {
           className="w-full mt-2"
         />
         <div className="mt-16">
-          <h3 className="text-xl font-bold">新着記事</h3>
+          <h3 className="text-xl font-bold">検索結果</h3>
+          <div className="mt-1 text-sm text-gray-500">
+            {articles != null && `${articles.length}件の記事`}
+          </div>
+
           <div className="mt-8 flex flex-row gap-12">
             <div className="basis-3/4 grid grid-cols-2 gap-6">
-              {result.contents.map((article) => (
-                <div key={article.id}>
-                  <Link href={"/blogs/" + article.id}>
-                    <ArticleCard article={article} />
-                  </Link>
+              {loading && (
+                <div className="mt-16 col-span-2 mx-auto">
+                  <Loader />
                 </div>
-              ))}
-              <div className="mt-16 col-span-2 mx-auto">
-                <Pagination
-                  value={result.offset / 6 + 1}
-                  onChange={(value) => {
-                    console.log(value);
-                    window.location.href = "/blogs/page/" + value;
-                  }}
-                  total={result.totalCount / 6 + 1}
-                />
-              </div>
+              )}
+              {articles && (
+                <>
+                  {articles.map((article) => (
+                    <div key={article.id}>
+                      <Link href={"/blogs/" + article.id}>
+                        <ArticleCard article={article} />
+                      </Link>
+                    </div>
+                  ))}
+                </>
+              )}
             </div>
 
             <aside className="basis-1/4">
               <div>
-                <h5 className="font-bold mb-2">検索</h5>
+                <h5 className="text-base mt-0">検索</h5>
                 <TextInput placeholder="Search..." />
               </div>
               <div className="mt-16">
-                <h5 className="font-bold mb-2">カテゴリ</h5>
+                <h5 className="text-base">カテゴリ</h5>
                 <ul>
                   <li>チュートリアル</li>
                   <li>日記</li>
@@ -76,16 +104,3 @@ export default function Home({ result }: HomeProps) {
     </>
   );
 }
-
-export const getStaticProps = async () => {
-  const data = await microcms.get({
-    endpoint: "blogs",
-    queries: { limit: 6, orders: "-publishedAt" },
-  });
-
-  return {
-    props: {
-      result: data,
-    },
-  };
-};
