@@ -7,6 +7,7 @@ import styles from "@/styles/hoge.module.css";
 import { SideBar } from "@/components/SideBar";
 import { LayoutHeader } from "@/components/Header";
 import { log } from "console";
+import { Footer } from "@/components/Footer";
 
 type BlogDetailProps = {
   article: Article;
@@ -36,11 +37,7 @@ export default function BlogDetail({ article }: BlogDetailProps) {
           </div>
         </div>
       </main>
-      <footer className="mt-32">
-        <div className="bg-slate-800 py-16 text-center">
-          <div className="text-white">フッター</div>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }

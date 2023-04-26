@@ -6,6 +6,7 @@ import { Image } from "@mantine/core";
 import Link from "next/link";
 import { ReactNode } from "react";
 import { CarouselBanner } from "./CarouselBanner";
+import { Footer } from "./Footer";
 
 type LayoutProps = {
   banners: Banner[];
@@ -36,11 +37,7 @@ export default function Layout({
           </div>
         </div>
       </main>
-      <footer className="mt-32">
-        <div className="bg-slate-800 py-16 text-center">
-          <div className="text-white">フッター</div>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }
