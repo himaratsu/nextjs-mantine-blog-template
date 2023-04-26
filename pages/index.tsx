@@ -16,7 +16,7 @@ type HomeProps = {
 export default function Home({ result, banners, categories }: HomeProps) {
   return (
     <Layout banners={banners} categories={categories}>
-      <h3 className="text-xl font-bold col-span-2">新着記事</h3>
+      <h3 className="text-xl font-bold col-span-2 mb-4">新着記事</h3>
       {result.contents.map((article) => (
         <div key={article.id}>
           <Link href={"/blogs/" + article.id}>

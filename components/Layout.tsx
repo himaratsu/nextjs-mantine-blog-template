@@ -24,14 +24,15 @@ export default function Layout({
   return (
     <>
       <LayoutHeader />
+      <CarouselBanner banners={banners} />
       <main className="container mx-auto">
-        <CarouselBanner banners={banners} />
-
         <div className="mt-16">
-          <div className="flex flex-row gap-12">
-            <div className="basis-3/4 grid grid-cols-2 gap-6">{children}</div>
+          <div className="flex flex-col lg:flex-row gap-12">
+            <div className="sm:basis-3/4 grid grid-cols-2 gap-2 sm:gap-6">
+              {children}
+            </div>
 
-            <aside className="basis-1/4">
+            <aside className="basis-1/4 mt-20">
               <SideBar keyword={keyword} categories={categories} />
             </aside>
           </div>

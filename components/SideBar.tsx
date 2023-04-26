@@ -10,7 +10,7 @@ type SideBarProps = {
 export function SideBar({ keyword, categories }: SideBarProps) {
   return (
     <>
-      <div className="mt-14">
+      <div>
         <TextInput
           placeholder="Search..."
           defaultValue={keyword}
