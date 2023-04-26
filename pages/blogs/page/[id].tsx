@@ -9,12 +9,13 @@ import Link from "next/link";
 
 type BlogProps = {
   result: MicroCMSListResponse<Article>;
+  banners: Banner[];
   categories: Category[];
 };
 
-export default function Home({ result, categories }: BlogProps) {
+export default function Home({ result, banners, categories }: BlogProps) {
   return (
-    <Layout categories={categories}>
+    <Layout banners={banners} categories={categories}>
       <h3 className="text-xl font-bold col-span-2">新着記事</h3>
       {result.contents.map((article) => (
         <div key={article.id}>
@@ -66,6 +67,10 @@ export const getStaticProps = async (context: any) => {
     },
   });
 
+  const banners = await microcms.get({
+    endpoint: "banners",
+  });
+
   const categories = await microcms.get({
     endpoint: "categories",
   });
@@ -73,6 +78,7 @@ export const getStaticProps = async (context: any) => {
   return {
     props: {
       result: data,
+      banners: banners.contents,
       categories: categories.contents,
     },
   };

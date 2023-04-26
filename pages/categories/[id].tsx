@@ -11,17 +11,19 @@ import Link from "next/link";
 
 type CategoryProps = {
   category: Category;
+  banners: Banner[];
   categories: Category[];
   result: MicroCMSListResponse<Article>;
 };
 
 export default function Category({
   category,
+  banners,
   categories,
   result,
 }: CategoryProps) {
   return (
-    <Layout categories={categories}>
+    <Layout banners={banners} categories={categories}>
       <h3 className="text-xl font-bold col-span-2">#{category.name} の記事</h3>
       {result.contents.map((article) => (
         <div key={article.id}>
@@ -72,7 +74,10 @@ export const getStaticProps = async (context: any) => {
     endpoint: "categories",
   });
 
-  // categories の中から id が context.params.id と一致するものを抽出
+  const banners = await microcms.get({
+    endpoint: "banners",
+  });
+
   const category = categories.contents.find(
     (category: Category) => category.id === context.params.id
   );
@@ -80,8 +85,9 @@ export const getStaticProps = async (context: any) => {
   return {
     props: {
       category,
-      result: data,
+      banners,
       categories: categories.contents,
+      result: data,
     },
   };
 };

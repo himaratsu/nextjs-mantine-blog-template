@@ -11,10 +11,11 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 type SearchProps = {
+  banners: Banner[];
   categories: Category[];
 };
 
-export default function Search({ categories }: SearchProps) {
+export default function Search({ banners, categories }: SearchProps) {
   const router = useRouter();
   const keyword = router.query.keyword as string;
 
@@ -37,7 +38,7 @@ export default function Search({ categories }: SearchProps) {
   }, [keyword]);
 
   return (
-    <Layout keyword={keyword} categories={categories}>
+    <Layout banners={banners} keyword={keyword} categories={categories}>
       <div className="col-span-2">
         <h3 className="text-xl font-bold">検索結果</h3>
         <div className="mt-2 text-sm text-gray-500">
@@ -63,12 +64,17 @@ export default function Search({ categories }: SearchProps) {
 }
 
 export const getStaticProps = async () => {
+  const banners = await microcms.get({
+    endpoint: "banners",
+  });
+
   const categories = await microcms.get({
     endpoint: "categories",
   });
 
   return {
     props: {
+      banners: banners.contents,
       categories: categories.contents,
     },
   };
