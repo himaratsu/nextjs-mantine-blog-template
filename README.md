@@ -15,8 +15,6 @@ https://nextjs-mantine-blog-template.vercel.app/
 - 検索
 - カルーセルバナー
 
-Jamstack 構成で作られているため、ページは高速に表示されます。
-
 ## 環境変数の設定
 
 ルート直下に`.env.local`ファイルを作成し、下記の情報を入力してください。
@@ -54,3 +52,12 @@ yarn dev
 [Vercel Platform](https://vercel.com/new?filter=next.js)から簡単にデプロイが可能です。
 
 リポジトリを紐付け、環境変数を Environment Variables に登録しましょう。
+
+## 技術構成
+
+- Next.js
+- TypeScript
+- Mantine
+- TailwindCSS
+
+Jamstack 構成で作られており、各ページは高速に表示されます。
