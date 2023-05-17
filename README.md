@@ -28,7 +28,7 @@ MICROCMS_SERVICE_DOMAIN=xxxxxxxxxx
 microCMS 管理画面の「サービス設定 > API キー」から確認することができます。
 
 `MICROCMS_SERVICE_DOMAIN`  
-microCMS 管理画面の URL（https://xxxxxxxx.microcms.io）の xxxxxxxx の部分です。
+microCMS 管理画面の URL（ https://xxxxxxxx.microcms.io ）の xxxxxxxx の部分です。
 
 ## 開発の仕方
 
